@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			ul,h3 {
+				padding: 0;
+				margin: 0;
+			}
+			li {
+				list-style: none;
+			}
+			#list {
+				margin: 0 auto;
+				padding: 20px;
+				width: 200px;
+				border: 1px solid #999;
+			}
+			#list .lis ul {
+				display: none;
+			}
+			#list .lis h3 {
+				padding: 5px 25px;
+				background: url(img/timg.png) no-repeat 10px center lightcoral;				
+				background-size: 8px;
+			}
+			#list .lis li {
+				text-indent: 30px;
+				border: 1px solid #999;
+			}
+			#list .lis .active {
+				background: url(img/timg1.png) no-repeat 10px center lightgray;				
+				background-size: 8px;
+			}
+			#list .lis .hover {
+				background: lightsalmon;
+			}	
+		</style>
+		<script>
+			window.onload = function() {
+				var oUl = document.getElementById('list');
+				var aH3 = oUl.getElementsByTagName('h3');
+				var aUl = oUl.getElementsByTagName('ul');
+				var aLi = null;
+				var arrLi = [];
+				
+				for(var i=0; i<aUl.length; i++) {
+					aLi = aUl[i].getElementsByTagName('li');
+					for(var j=0; j<aLi.length; j++){
+						arrLi.push(aLi[j]);
+					}
+				}
+				
+				for(var i=0; i<arrLi.length; i++) {
+					arrLi[i].onclick = function(){
+						for(var i=0; i<arrLi.length; i++){
+							arrLi[i].className = '';
+						}
+						this.className = 'hover';
+					}
+				}
+				
+				
+				//标题点击事件
+				for(var i=0; i<aH3.length; i++){
+					aH3[i].index = i;
+					aH3[i].onclick = function(){
+						if(this.className == ''){
+							for(var i=0; i<aH3.length; i++){
+								aUl[i].style.display = 'none';
+								aH3[i].className = '';
+							}
+							aUl[this.index].style.display = 'block';
+							this.className = 'active';
+						} else {
+							aUl[this.index].style.display = 'none';
+							this.className = '';
+						}
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="list">
+			<li class="lis">
+				<h3>好友</h3>
+				<ul>
+					<li>aaa</li>
+					<li>aaa</li>
+					<li>aaa</li>
+					<li>aaa</li>
+					<li>aaa</li>
+				</ul>
+			</li>
+			<li class="lis">
+				<h3>好n友</h3>
+				<ul>
+					<li>bbb</li>
+					<li>bbb</li>
+					<li>bbb</li>
+					<li>bbb</li>
+					<li>bbb</li>
+				</ul>
+			</li>
+			<li  class="lis">
+				<h3>好x友</h3>
+				<ul>
+					<li>ccc</li>
+					<li>ccc</li>
+					<li>ccc</li>
+					<li>ccc</li>
+					<li>ccc</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+</html>
